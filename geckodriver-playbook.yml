@@ -1,0 +1,7 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - command: wget https://github.com/mozilla/geckodriver/releases/download/v0.10.0/geckodriver-v0.10.0-linux64.tar.gz -O {{ playbook_dir }}/geckodriver-v0.10.0-linux64.tar.gz
+    - shell: mkdir /home/vagrant/bin
+    - shell: tar -xzvf {{ playbook_dir }}/geckodriver-v0.10.0-linux64.tar.gz -C /home/vagrant/bin
+    - shell: rm {{ playbook_dir }}/geckodriver-v0.10.0-linux64.tar.gz

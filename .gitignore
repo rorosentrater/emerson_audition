@@ -1,0 +1,7 @@
+*.log
+*.idea
+*.retry
+*.py[ocd]
+*.tar.gz
+
+v/
