@@ -6,13 +6,13 @@ CONNECTION='-c local'
 
 buildAndDeploy() {
   LOCATION=$1
-  TAG=${2:-0.0.0-vagrant}
+  TAG=${2:-0.0.0-template}
 
   OLD_PWD=$(pwd)
   cd $LOCATION
   #change this depending on project
   docker build . -t vagrant/template:$TAG
-cd $OLD_PWD
+  cd $OLD_PWD
 
   ansible-playbook ${LOCATION}/deploy-playbook.yml \
                    ${CONNECTION} \

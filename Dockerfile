@@ -16,7 +16,8 @@ RUN easy_install pip && pip install -U -r /opt/requirements-cpython.txt && \
     rm /opt/requirements-cpython.txt
 
 # change this add based on project #
-ADD template /opt/template
+ADD test /opt/test
 EXPOSE 8000
-WORKDIR /opt/template
+WORKDIR /opt/test
 
+CMD ["cat", "/opt/.gitignore"]
