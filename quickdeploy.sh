@@ -12,7 +12,7 @@ buildAndDeploy() {
   cd $LOCATION
   #change this depending on project
   docker build . -t vagrant/template:$TAG
-cd $OLD_PWD
+  cd $OLD_PWD
 
   ansible-playbook ${LOCATION}/deploy-playbook.yml \
                    ${CONNECTION} \

@@ -21,27 +21,27 @@
     i: '{{registry}}/{{ image }}:{{ tag }}'
     ports: 8080:8000
 
-    tasks:
-    - name: Checking if the "{{ container }}" container exists
-      shell: docker inspect {{ container }} | grep Id | cut -d '"' -f 4
-      register: container_id
-      when: container is defined
+  tasks:
+  - name: Checking if the "{{ container }}" container exists
+    shell: docker inspect {{ container }} | grep Id | cut -d '"' -f 4
+    register: container_id
+    when: container is defined
 
-    - name: Pulling the newest image from the repository
-      command: docker pull {{ i }}
-      when: tag != '0.0.0-vagrant'
+  - name: Pulling the newest image from the repository
+    command: docker pull {{ i }}
+    when: tag != '0.0.0-vagrant'
 
-    - name: Stopping the "{{ container }}" container
-      command: docker stop {{ container }}
-      when: container_id.stdout != ""
+  - name: Stopping the "{{ container }}" container
+    command: docker stop {{ container }}
+    when: container_id.stdout != ""
 
-    - name: Removing the "{{ container }}" container
-      command: docker rm --force=true --volumes=true {{ container }}
-      when: container_id.stdout != ""
+  - name: Removing the "{{ container }}" container
+    command: docker rm --force=true --volumes=true {{ container }}
+    when: container_id.stdout != ""
 
-    - name: Running the "{{ container }}" container
-      command: docker run --detach=true
-                          --restart=always
-                          --name={{ container }}
-                          --publish={{ ports }}
-                          {{ i }}
+  - name: Running the "{{ container }}" container
+    command: docker run --detach=true
+                        --restart=always
+                        --name={{ container }}
+                        --publish={{ ports }}
+                        {{ i }}
