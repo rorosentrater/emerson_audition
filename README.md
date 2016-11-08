@@ -3,10 +3,13 @@
 ** /utest **
 
 Unit tests will go here
+If one of the Automated tests is flawed from QAT perspective,
+we need to test that out here, and prove we are flawed
 
 ** /atest **
 
 Automated tests will go here
+Test can be written from Feature files or Unit Tests 
 
 ** /atest/constants.py **
 
