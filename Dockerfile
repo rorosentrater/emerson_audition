@@ -20,4 +20,4 @@ ADD test /opt/test
 EXPOSE 8000
 WORKDIR /opt/test
 
-CMD ["cat", "/opt/.gitignore"]
+CMD []

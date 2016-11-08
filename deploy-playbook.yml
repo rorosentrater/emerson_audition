@@ -29,7 +29,7 @@
 
     - name: Pulling the newest image from the repository
       command: docker pull {{ i }}
-      when: tag != '0.0.0-vagrant'
+      when: tag != '0.0.0-template'
 
     - name: Stopping the "{{ container }}" container
       command: docker stop {{ container }}
