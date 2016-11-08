@@ -6,7 +6,7 @@ CONNECTION='-c local'
 
 buildAndDeploy() {
   LOCATION=$1
-  TAG=${2:-0.0.0-template}
+  TAG=${2:-0.0.0-vagrant}
 
   OLD_PWD=$(pwd)
   cd $LOCATION
