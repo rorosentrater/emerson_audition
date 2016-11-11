@@ -21,7 +21,12 @@ will not be run on commit, but will be run when our QA uses the project
 All global configuration variables will go here (ex: URL live vs. test)
 Use for both Unit tests and Automatic tests
 
-* /library/transparent
+* /library/setup.template.py
+
+Helps turn your project specific code into a library we can all use.  make sure 
+to change "template" out with your project name, (ex: lesson-gin)
+
+* /library/transparent_qat
 
 Project specific library package, all prefixed with "qat"
 Each distinguishable page should be a class
