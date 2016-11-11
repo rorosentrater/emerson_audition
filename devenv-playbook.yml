@@ -2,8 +2,6 @@
   connection: local
   sudo: yes
   tasks:
-  - apt: name=mysql-server state=latest update_cache=true cache_valid_time=600
-  - apt: name=libmysqlclient-dev state=latest update_cache=true cache_valid_time=600
   - pip: requirements={{ playbook_dir }}/{{ item }}
          virtualenv={{ playbook_dir }}/v
          extra_args="--trusted-host 192.168.254.81"
