@@ -14,6 +14,9 @@ eq = $(and $(findstring $(1),$(2)),$(findstring $(2),$(1)))
 BRANCH := $(or ${bamboo_planRepository_branch},vagrant)
 VERSION := $(if ${bamboo_buildNumber},1.0.${bamboo_buildNumber},0.0.0)-${BRANCH}
 
+CLIENT_NAMESPACE := transparent_${PROJECT}
+CLIENT_ARTIFACT := ${CLIENT_NAMESPACE}-${NAME}-${VERSION}.tar.gz
+
 IS_BAMBOO := $(if ${bamboo_DOCKER_REGISTRY},1,)
 
 PUBLISHABLE := $(or $(call eq,${BRANCH},master),$(call eq,${BRANCH},development))
@@ -24,6 +27,12 @@ IMAGE_NAMESPACE := $(if ${PUBLISHABLE},${PUBLISHABLE_IMAGE_NAMESPACE},${CD_IMAGE
 
 IMAGE_NAME := ${IMAGE_NAMESPACE}/${PROJECT}-${PROJECT_REPOSITORY}:${VERSION}
 IMAGE_LATEST := ${IMAGE_NAMESPACE}/${PROJECT}-${PROJECT_REPOSITORY}:latest
+
+
+ARTIFACTORY_CREDENTIALS := U1ZOQnVpbGQgU25vb3B5KjA5
+ARTIFACTORY_URL := http://192.168.254.81:81/artifactory/libs-release-local/${PROJECT}/${PROJECT_REPOSITORY}/
+CLIENT_ARTIFACTORY_URL := http://192.168.254.81:81/artifactory/libs-release-local/qat/${CLIENT_NAMESPACE}-${NAME}
+
 
 DOCKER := sudo docker
 
@@ -69,6 +78,34 @@ venv: virtualenv-1.11.6
 image:
 	${DOCKER} build --rm -t ${IMAGE_NAME} .
 
+client: venv client/dist/${CLIENT_NAMESPACE}-${NAME}-${VERSION}.tar.gz
+
+client/dist/${CLIENT_ARTIFACT}: venv
+	sed s/0.0.1/${VERSION}/ library/setup.template.py > library/setup.py
+	cd library && ../venv/bin/python setup.py sdist
+
+clean-client:
+	rm -rf library/test-reports
+	rm -rf library/dist
+	rm -rf library/*.egg-info
+	rm -f library/setup.py
+	-rm -f *.pyc
+	-rm -f **/*.pyc
+
+publish-client: client/dist/${CLIENT_ARTIFACT}
+ifneq (${PUBLISHABLE},)
+	@echo "Publishing client: ${CLIENT_ARTIFACT}"
+	curl --user "$$(echo ${ARTIFACTORY_CREDENTIALS} | base64 --decode | awk '{ sub(/ /, ":"); print }')" \
+		 --data-binary \
+		 @client/dist/${CLIENT_ARTIFACT} \
+		 -X PUT \
+		 ${CLIENT_ARTIFACTORY_URL}/${CLIENT_ARTIFACT}
+else
+	@echo "Not publishing client."
+endif
+
+
+
 # ######################################################### #
 #  Publish docker image
 publish:
@@ -109,3 +146,4 @@ vars:
 
 	@echo PUBLISHABLE = ${PUBLISHABLE}
 	@echo DOCKER = ${DOCKER}
+	@echo CLIENT_ARTIFACT = ${CLIENT_ARTIFACT}
