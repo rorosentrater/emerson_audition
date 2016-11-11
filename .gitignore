@@ -4,4 +4,8 @@
 *.py[ocd]
 *.tar.gz
 
+bamboo.py
 v/
+test-reports/
+virtualenv-1.11.6/
+venv/
