@@ -27,6 +27,14 @@ Project specific library package, all prefixed with "qat"
 Each distinguishable page should be a class
 Each smallest function should be a def
 
+* requirements-cpython.txt
+
+Project specific python install packages go here
+
+* test-requirements-cpython,txt
+
+Unit Testing Specific Python install packages go here, so they don't mingle with the Project overall
+
 * deploy-playbook.yml
 
 Please change the project and container name to be unique to your project
