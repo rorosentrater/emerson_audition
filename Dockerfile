@@ -1,4 +1,4 @@
-FROM registry.transparent.com/qat-qat-base-image:latest
+FROM registry.transparent.com/qat-base-image:latest
 MAINTAINER apaul@transparent.com
 
 RUN apt-get install -y bzip2 \
