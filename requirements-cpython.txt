@@ -1,2 +1,4 @@
 selenium==3.0.0b3
 pyvirtualdisplay
+
+http://192.168.254.81:81/artifactory/libs-release-local/qat/transparent_qat-utils/transparent_qat-utils-1.0.4-master.tar.gz
