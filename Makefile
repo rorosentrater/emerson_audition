@@ -97,7 +97,7 @@ ifneq (${PUBLISHABLE},)
 	@echo "Publishing client: ${CLIENT_ARTIFACT}"
 	curl --user "$$(echo ${ARTIFACTORY_CREDENTIALS} | base64 --decode | awk '{ sub(/ /, ":"); print }')" \
 		 --data-binary \
-		 @client/dist/${CLIENT_ARTIFACT} \
+		 @library/dist/${CLIENT_ARTIFACT} \
 		 -X PUT \
 		 ${CLIENT_ARTIFACTORY_URL}/${CLIENT_ARTIFACT}
 else
