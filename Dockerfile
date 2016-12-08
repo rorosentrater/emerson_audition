@@ -15,4 +15,4 @@ ADD library /opt/library
 EXPOSE 8000
 WORKDIR /opt
 
-CMD ["echo", "$PATH"]
+CMD ["/opt/v/bin/python", "-m", "atest"]
