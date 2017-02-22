@@ -7,7 +7,7 @@ setup(
     name=NAME,
     version=__version__,
     packages=find_packages(),
-    namespace_packages=["transparent_qat"],
+    namespace_packages=["template"],
     install_requires=[
         "selenium==3.0.0b3",
         "pyvirtualdisplay",
