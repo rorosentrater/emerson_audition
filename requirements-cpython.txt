@@ -3,7 +3,7 @@ pyvirtualdisplay
 xmlrunner
 nose_parameterized
 nose
-xunitmp
+nose_xunitmp
 attrdict
 
 http://192.168.254.81:81/artifactory/libs-release-local/qat/transparent_qat-utils/transparent_qat-utils-1.0.9-master.tar.gz
