@@ -34,7 +34,7 @@ ARTIFACTORY_URL := http://192.168.254.81:81/artifactory/libs-release-local/${PRO
 CLIENT_ARTIFACTORY_URL := http://192.168.254.81:81/artifactory/libs-release-local/qat/${CLIENT_NAMESPACE}-${NAME}
 
 
-DOCKER := sudo docker
+DOCKER := docker
 
 # ######################################################### #
 # Run tests
@@ -109,7 +109,7 @@ endif
 # ######################################################### #
 #  Publish docker image
 publish:
-ifneq (${IS_BAMBOO},)
+ifneq (${PUBLISHABLE},)
 	@echo "Publishing image ${IMAGE_NAME} to registry."
 	${DOCKER} tag ${IMAGE_NAME} ${IMAGE_LATEST}
 	${DOCKER} push ${IMAGE_NAME}
