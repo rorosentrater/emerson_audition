@@ -1,1 +1,1 @@
-from qat.template.template import Product
+from .template import Product
