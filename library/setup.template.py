@@ -10,6 +10,6 @@ setup(
     packages=find_packages(),
     namespace_packages=["qat"],
     install_requires=[
-        "pyscc>=0.0.2"
+        "pyscc>=0.0.3"
     ]
 )
