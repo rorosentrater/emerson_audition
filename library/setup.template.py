@@ -1,15 +1,15 @@
-__version__ = "0.0.1"
-NAME = "transparent_qat-template"
-
 from setuptools import setup, find_packages
+
+
+__version__ = "0.0.1"
+NAME = "qat-template"
 
 setup(
     name=NAME,
     version=__version__,
     packages=find_packages(),
-    namespace_packages=["template"],
+    namespace_packages=["qat"],
     install_requires=[
-        "selenium==3.0.0b3",
-        "pyvirtualdisplay",
+        "pyscc>=0.0.3"
     ]
 )

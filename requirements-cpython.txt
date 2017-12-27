@@ -1,10 +1,4 @@
-selenium==3.0.0b3
-pyvirtualdisplay
+pyscc==0.0.3
 xmlrunner
-nose_parameterized
-nose
-nose_xunitmp
-attrdict
 
-http://192.168.254.81:81/artifactory/libs-release-local/qat/transparent_qat-utils/transparent_qat-utils-1.0.9-master.tar.gz
-http://192.168.254.81:81/artifactory/libs-release-local/qat/transparent_qat-cl150/transparent_qat-cl150-1.0.17-master.tar.gz
+http://192.168.254.81:81/artifactory/libs-release-local/qat/transparent-qat-utils/transparent_qat-utils-2.4.127.tar.gz
