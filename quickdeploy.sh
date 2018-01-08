@@ -20,4 +20,4 @@ buildAndDeploy() {
                    --extra-vars "deploy_server=${LOCAL_MACHINE} deploy_user=${LOCAL_USER} deploy_password=${LOCAL_PW} registry=vagrant tag=${TAG}"  -vvvv
 }
 
-buildAndDeploy .
+buildAndDeploy

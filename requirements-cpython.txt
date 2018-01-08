@@ -1,4 +1,3 @@
 pyscc==0.0.7
-xmlrunner
 
 http://192.168.254.81:81/artifactory/libs-release-local/qat/transparent-qat-utils/transparent_qat-utils-2.4.127.tar.gz
