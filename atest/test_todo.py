@@ -5,4 +5,4 @@ class TestCase(TestCase):
 
     def test_foobar(self):
         """this test tests foobar"""
-        pass
+        assert True

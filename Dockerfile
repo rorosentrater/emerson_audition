@@ -2,15 +2,13 @@ FROM robotgraves/virtualpython
 MAINTAINER apaul@transparent.com
 
 # LIBS
-RUN apt-get install -y bzip2 \
+RUN apt-get update && apt-get install -y bzip2 \
     zlib1g-dev libopenjpeg-dev libjpeg-dev xvfb
 
 # FIREFOX
 ARG FIREFOX_VERSION=57.0
-RUN apt-get -qqy --no-install-recommends install firefox \
-  && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
+RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
   && wget -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2 \
-  && apt-get -y purge firefox \
   && rm -rf /opt/firefox \
   && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
   && rm /tmp/firefox.tar.bz2 \
