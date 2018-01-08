@@ -5,7 +5,7 @@ from unittest import TestCase
 class LintTest(TestCase):
 
     def setUp(self):
-        disabled_rules = ['missing-docstring']
+        disabled_rules = ['missing-docstring', 'no-self-use', 'relative-import', 'no-member', 'duplicate-code']
         self.default_filter = '--disable={rules}'.format(rules=','.join(disabled_rules))
 
     def test_library(self):

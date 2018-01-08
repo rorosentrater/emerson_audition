@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  become: True
+  tasks:
+    - npm:
+        name: geckodriver
+        version: 1.10.0
+        global: yes
+        state: present
