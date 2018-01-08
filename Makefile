@@ -1,7 +1,7 @@
 PROJECT := qat
 
 # Conditional variables for bamboo
-NAME := $(or ${bamboo_repository_name}, template)
+NAME := $(or ${bamboo_repository_name}, todo)
 PROJECT_REPOSITORY := ${NAME}
 
 TEST_CONTAINER := ${NAME}_test
