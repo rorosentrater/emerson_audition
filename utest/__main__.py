@@ -1,6 +1,7 @@
 import unittest
 import os
 
+from test_pylint import LintTest
 
 if __name__ == "__main__":
     try:
