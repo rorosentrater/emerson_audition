@@ -19,7 +19,7 @@ class LintTest(TestCase):
         with self.assertRaises(SystemExit) as lint_check:
             Test([self.default_filter, 'library'])
 
-            self.assertEqual(lint_check.exception.code, 0)
+        self.assertEqual(lint_check.exception.code, 0)
 
     def test_tests(self):
         with self.assertRaises(SystemExit) as lint_check:
