@@ -17,6 +17,4 @@ class App(Controller):
         self.my_page.form_submit().click()
 
     def task_created(self, index):
-        self.my_page.task(self, index)
-
-
+        self.my_page.task(index)

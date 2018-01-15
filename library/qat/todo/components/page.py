@@ -9,7 +9,6 @@ class Page(Component):
     def button(self):
         return 'button'
 
-
     def task_assignee(self):
         return self.browser.find_element_by_id("taskAssignee")
 
@@ -23,4 +22,5 @@ class Page(Component):
         return self.browser.find_element_by_class_name("is-success.u-pull-right")
 
     def task(self, index):
-        return self.browser.find_element_by_css_selector("li:nth-of-type(" + index + ")")
+        param = "li:nth-of-type(" + str(index) + ")"
+        return self.browser.find_element_by_css_selector(param)
