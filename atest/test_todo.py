@@ -56,6 +56,8 @@ class CreateTask(TestCase):
         # Fills out the Content field with some text
         self.driver.find_element(By.CLASS_NAME, 'is-success.u-pull-right').click()
         # Clicks Create Button to Create the task
+        self.driver.find_element(By.CSS_SELECTOR, 'li:nth-of-type(4)')
+        # Checks for the newly created fourth task
 
     def tearDown(self):
         """Closes Browser"""
