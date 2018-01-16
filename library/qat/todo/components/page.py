@@ -9,23 +9,22 @@ class Page(Component):
     def button(self):
         return 'button'
 
-    @property
+    @component_element
     def task_assignee(self):
-        return self.browser.find_element_by_id("taskAssignee")
+        return "#taskAssignee"
 
-    @property
+    @component_element
     def task_title(self):
-        return self.browser.find_element_by_id("taskTitle")
+        return "#taskTitle"
 
-    @property
+    @component_element
     def task_content(self):
-        return self.browser.find_element_by_id("taskContent")
+        return "#taskContent"
 
-    @property
+    @component_element
     def form_submit(self):
-        return self.browser.find_element_by_class_name("is-success.u-pull-right")
+        return ".is-success.u-pull-right"
 
-
-    def task(self, index):
-        param = "li:nth-of-type(" + str(index) + ")"
-        return self.browser.find_element_by_css_selector(param)
+    @component_elements
+    def task(self):
+        return "todo-task"

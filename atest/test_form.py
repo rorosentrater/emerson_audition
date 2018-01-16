@@ -10,4 +10,5 @@ class TestForm(TestCase):
         my_driver = webdriver.Firefox()
         controller = App(my_driver, "https://riot-todo-84334.firebaseapp.com/#!/")
         controller.form_fill_out("Brian", "clean out chicken coop", "they smell bad")
-        controller.task_created(3)
+        controller.task_created(4)
+        controller.exit()
