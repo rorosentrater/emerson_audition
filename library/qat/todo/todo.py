@@ -1,5 +1,4 @@
 from pyscc import Controller
-from .components import Page
 
 
 class App(Controller):
