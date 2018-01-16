@@ -5,7 +5,10 @@ from library.qat.todo import App
 
 
 class TestForm(TestCase):
+    """
+    Description: Test for input todo form
 
+    """
     def test_form_fill(self):
         my_driver = webdriver.Firefox()
         controller = App(my_driver, "https://riot-todo-84334.firebaseapp.com/#!/")

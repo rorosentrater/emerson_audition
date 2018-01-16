@@ -4,16 +4,33 @@ from .components import Page
 
 class App(Controller):
 
+    """
+
+    :Description: Controller used for testing Todo input forms
+
+    :param browser: Selenium browser reference to pass to referenced page and modal objects.
+
+    :type browser: webdriver
+
+    :param base_url: Base url used to navigate with your controller.
+
+    :type base_url: basestring
+
+    :param env: Key value pairs to pass to instantiated components.
+
+    :type env: **kwargs => dict
+
+    """
     def __init__(self, browser, url):
 
         super(App, self).__init__(browser, url, {})
         self.my_page = Page(self)
 
-    def form_fill_out(self, a, b, c):
+    def form_fill_out(self, assignee, title, content):
 
-        self.my_page.task_assignee.send_input(a)
-        self.my_page.task_title.send_input(b)
-        self.my_page.task_content.send_input(c)
+        self.my_page.task_assignee.send_input(assignee)
+        self.my_page.task_title.send_input(title)
+        self.my_page.task_content.send_input(content)
         self.my_page.form_submit.click()
 
     def task_created(self, expected):
