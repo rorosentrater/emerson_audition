@@ -14,13 +14,10 @@ class LinkTestController(Controller):
         super(LinkTestController, self).__init__(browser, url, {})
         self.elements = LinkElements(self)
 
-    def link_path(self, index):
+    def link_path(self):
         """:Description: Navigates to task and verifies correct URL.
-        :param index: Chooses correct task.
-        :type index: int.
-
         """
-        self.elements.link.get()[index].click()
+        self.elements.link.get()[self.count].click()
         assert self.instance_assignee in self.location
 
     def form_fill(self, assignee, title, content):
@@ -32,6 +29,7 @@ class LinkTestController(Controller):
         :param content: string to pass to forms.
         :type content: string.
         """
+        self.count = self.elements.link.count()
         self.instance_assignee = assignee
         self.instance_title = title
         self.elements.task_assignee.send_input(assignee)

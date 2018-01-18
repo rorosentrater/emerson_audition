@@ -12,7 +12,7 @@ class TestLink(TestCase):
         my_driver = webdriver.Firefox()
         controller = LinkTestController(my_driver, "https://riot-todo-84334.firebaseapp.com/#!/")
         controller.form_fill("Walter", "Clean the methlab", "There is a barrel leaking in there!")
-        controller.link_path(3)
+        controller.link_path()
         controller.task_check()
         controller.exit()
 
