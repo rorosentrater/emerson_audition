@@ -23,6 +23,8 @@ class TaskLink(TestCase):
         # Click the Create Button to Create the task
         self.driver.find_element(By.CSS_SELECTOR, 'li:nth-of-type(4) span:nth-of-type(2)').click()
         # Finds the new task's link and navigates to the assignees profile
+        assert self.driver.current_url == 'https://riot-todo-84334.firebaseapp.com/#!/profile/Logan'
+        # Ensures the correct profile/URL has been navigated to
 
     def tearDown(self):
         """Closes Browser"""
