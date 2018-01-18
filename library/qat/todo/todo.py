@@ -19,19 +19,18 @@ class App(Controller):
         :param assignee: string to pass to forms.
         :type assignee: string.
         :param title: string to pass to forms.
-        :title: string.
+        :type title: string.
         :param content: string to pass to forms.
         :type content: string.
         """
+        self.task_count_b4 = self.my_page.task.count()
         self.my_page.task_assignee.send_input(assignee)
         self.my_page.task_title.send_input(title)
         self.my_page.task_content.send_input(content)
         self.my_page.form_submit.click()
 
-    def task_created(self, expected):
+    def task_created(self):
         """:Description: Verifies that the correct number of tasks are created.
-        :param expected: number of tasks that should exist.
-        :type expected: int
         """
-        assert expected == self.my_page.task.count()
+        assert self.task_count_b4 < self.my_page.task.count()
         #self.my_page.task.wait_for(5, length=expected, strict=True, error=True)
