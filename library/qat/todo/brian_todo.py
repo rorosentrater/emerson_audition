@@ -1,5 +1,5 @@
 from pyscc import Controller
-from components.link_test_elements_brian import LinkElements
+from components.brian_home import LinkElements
 
 
 class LinkTestController(Controller):

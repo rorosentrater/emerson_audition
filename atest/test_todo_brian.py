@@ -4,9 +4,6 @@ from selenium import webdriver
 
 class TestTodo(TestCase):
 
-
-
-
     def test_todo_bl(self):
         driver = webdriver.Firefox()
         driver.get("https://riot-todo-84334.firebaseapp.com/#!/")

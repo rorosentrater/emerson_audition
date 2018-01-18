@@ -1,6 +1,6 @@
 from unittest import TestCase
 from selenium import webdriver
-from library.qat.todo.link_test_controller_brian import LinkTestController
+from library.qat.todo.brian_todo import LinkTestController
 
 
 class TestLink(TestCase):
