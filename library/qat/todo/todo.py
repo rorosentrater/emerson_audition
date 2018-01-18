@@ -15,7 +15,8 @@ class App(Controller):
         self.my_page = Page(self)
 
     def form_fill_out(self, assignee, title, content):
-        """:Description: Sends input to forms to test there functionality.
+        """
+        :Description: Sends input to forms to test there functionality.
         :param assignee: string to pass to forms.
         :type assignee: string.
         :param title: string to pass to forms.
