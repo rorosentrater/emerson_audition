@@ -1,5 +1,5 @@
-from pylint.lint import Run as Test
 from unittest import TestCase
+from pylint.lint import Run as Test
 
 
 class LintTest(TestCase):
