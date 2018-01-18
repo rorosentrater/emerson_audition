@@ -1,8 +1,8 @@
 from pyscc import Controller
-from components.brian_home import LinkElements
+from components import BrianHome
 
 
-class LinkTestController(Controller):
+class BrianApp(Controller):
 
     def __init__(self, browser, url):
         """:Description: Controller used for testing Todo input forms.
@@ -11,13 +11,14 @@ class LinkTestController(Controller):
         :param url: Base url used to navigate with your controller.
         :type url: basestring
         """
-        super(LinkTestController, self).__init__(browser, url, {})
-        self.elements = LinkElements(self)
+        super(BrianApp, self).__init__(browser, url, {
+            'home': BrianHome
+        })
 
     def link_path(self):
         """:Description: Navigates to task and verifies correct URL.
         """
-        self.elements.link.get()[self.count].click()
+        self.components.home.link.get()[self.count].click()
         assert self.instance_assignee in self.location
 
     def form_fill(self, assignee, title, content):

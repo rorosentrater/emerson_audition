@@ -1,1 +1,2 @@
-from .page_brian import Page
+from .page import Page
+from .brian_home import BrianHome

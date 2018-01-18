@@ -3,11 +3,10 @@ from pyscc import Component, \
     component_element, component_elements, component_group
 
 
-class LinkElements(Component):
+class BrianHome(Component):
 
     @component_elements
     def link(self):
-
         return '#assignee'
 
     @component_element
