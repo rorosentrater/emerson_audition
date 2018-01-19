@@ -8,9 +8,9 @@ class BrianHome(Component):
 
     @component_group
     def form(self):
-        return {'form_assignee': '#taskAssignee', 'form_title': '#taskTitle',
-                'form_content': "#taskContent",
-                "form_submit": ".is-success.u-pull-right"}
+        return {'assignee': '#taskAssignee', 'title': '#taskTitle',
+                'content': "#taskContent",
+                "submit": ".is-success.u-pull-right"}
 
     @component_elements
     def link(self):

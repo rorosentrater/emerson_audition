@@ -38,10 +38,10 @@ class BrianApp(Controller):
         self.count = home.link.count()
         self.instance_assignee = assignee
         self.instance_title = title
-        home.form.form_assignee.send_input(assignee)
-        home.form.form_title.send_input(title)
-        home.form.form_content.send_input(content)
-        home.form.form_submit.click()
+        home.form.assignee.send_input(assignee)
+        home.form.title.send_input(title)
+        home.form.content.send_input(content)
+        home.form.submit.click()
         assert self.count < home.link.count()
         self.count = home.link.count()
 
