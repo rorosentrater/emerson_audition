@@ -3,25 +3,30 @@ from selenium import webdriver
 
 
 from library.qat.todo import BrianApp
+from qat.utils import Decorators
 
 
 class BrianTestTodo(TestCase):
 
-    def test_form_fill(self):
+    @Decorators.browsers()
+    def test_form_fill(self, driver, arguments):
         """
          :Description: Verifies that task creation form works.
          """
-        my_driver = webdriver.Firefox()
-        controller = BrianApp(my_driver, "https://riot-todo-84334.firebaseapp.com/#!/")
+        browser = driver(**arguments)
+        browser.get('https://riot-todo-84334.firebaseapp.com/#!/"') if arguments else driver()
+        controller = BrianApp(browser, "https://riot-todo-84334.firebaseapp.com/#!/")
         controller.form_fill("Brian", "clean out chicken coop", "they smell bad")
         controller.exit()
 
-    def test_link(self):
+    @Decorators.browsers()
+    def test_link(self, driver, arguments):
         """
         :Description: Creates a task, follows assignee link and verifies url + page text.
         """
-        my_driver = webdriver.Firefox()
-        controller = BrianApp(my_driver, "https://riot-todo-84334.firebaseapp.com/#!/")
+        browser = driver(**arguments) if arguments else driver()
+        browser.get('https://riot-todo-84334.firebaseapp.com/#!/"') if arguments else driver()
+        controller = BrianApp(browser, "https://riot-todo-84334.firebaseapp.com/#!/")
         controller.form_fill("Walter", "Clean the methlab", "There is a barrel leaking in there!")
         controller.link_path("Walter")
         controller.task_check("Walter", "Clean the methlab")
