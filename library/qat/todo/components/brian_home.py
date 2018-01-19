@@ -5,6 +5,13 @@ from pyscc import Component, \
 
 class BrianHome(Component):
 
+
+    @component_group
+    def form(self):
+        return {'form_assignee': '#taskAssignee', 'form_title': '#taskTitle',
+                'form_content': "#taskContent",
+                "form_submit": ".is-success.u-pull-right"}
+
     @component_elements
     def link(self):
         return '#assignee'
@@ -12,22 +19,6 @@ class BrianHome(Component):
     @component_element
     def button(self):
         return 'button'
-
-    @component_element
-    def task_assignee(self):
-        return "#taskAssignee"
-
-    @component_element
-    def task_title(self):
-        return "#taskTitle"
-
-    @component_element
-    def task_content(self):
-        return "#taskContent"
-
-    @component_element
-    def form_submit(self):
-        return ".is-success.u-pull-right"
 
     @component_element
     def prof_label(self):

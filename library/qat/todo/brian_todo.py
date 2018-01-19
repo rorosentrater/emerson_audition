@@ -20,12 +20,12 @@ class BrianApp(Controller):
         """
         :Description: Navigates to task and verifies correct URL.
         """
-        self.components.home.link.get()[self.count].click()
+        self.components.home.link.get()[self.count - 1].click()
         assert self.instance_assignee in self.location
 
     def form_fill(self, assignee, title, content):
         """
-        :Description: Sends input to forms to test there functionality.
+        :Description: Sends input to forms to test their functionality.
         :param assignee: string to pass to forms.
         :type assignee: string.
         :param title: string to pass to forms.
@@ -33,20 +33,22 @@ class BrianApp(Controller):
         :param content: string to pass to forms.
         :type content: string.
         """
-        with self.components.home as home:
-            # pylint: disable=attribute-defined-outside-init
-            self.count = home.link.count()
-            self.instance_assignee = assignee
-            self.instance_title = title
-            home.task_assignee.send_input(assignee)
-            home.task_title.send_input(title)
-            home.task_content.send_input(content)
-            home.form_submit.click()
+        home = self.components.home
+         #pylint: disable=attribute-defined-outside-init
+        self.count = home.link.count()
+        self.instance_assignee = assignee
+        self.instance_title = title
+        home.form.form_assignee.send_input(assignee)
+        home.form.form_title.send_input(title)
+        home.form.form_content.send_input(content)
+        home.form.form_submit.click()
+        assert self.count < home.link.count()
+        self.count = home.link.count()
 
     def task_check(self):
         """
         :Description: Verifies that the assignee page reflects the input.
         """
-        with self.components.home as home:
-            assert self.instance_assignee in home.prof_label.text(raw=True)
-            assert self.instance_title in home.task_label.text(raw=True)
+        home = self.components.home
+        assert self.instance_assignee in home.prof_label.text(raw=True)
+        assert self.instance_title in home.task_label.text(raw=True)
