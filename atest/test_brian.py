@@ -8,14 +8,17 @@ from qat.utils import Decorators
 
 class BrianTestTodo(TestCase):
 
+    def set_up(self, driver, arguments):
+        browser = driver(**arguments)
+        controller = BrianApp(browser, "https://riot-todo-84334.firebaseapp.com/#!/")
+        return controller
+
     @Decorators.browsers()
     def test_form_fill(self, driver, arguments):
         """
          :Description: Verifies that task creation form works.
          """
-        browser = driver(**arguments)
-        browser.get('https://riot-todo-84334.firebaseapp.com/#!/"') if arguments else driver()
-        controller = BrianApp(browser, "https://riot-todo-84334.firebaseapp.com/#!/")
+        controller = self.set_up(driver, arguments)
         controller.form_fill("Brian", "clean out chicken coop", "they smell bad")
         controller.exit()
 
@@ -24,9 +27,7 @@ class BrianTestTodo(TestCase):
         """
         :Description: Creates a task, follows assignee link and verifies url + page text.
         """
-        browser = driver(**arguments) if arguments else driver()
-        browser.get('https://riot-todo-84334.firebaseapp.com/#!/"') if arguments else driver()
-        controller = BrianApp(browser, "https://riot-todo-84334.firebaseapp.com/#!/")
+        controller = self.set_up(driver, arguments)
         controller.form_fill("Walter", "Clean the methlab", "There is a barrel leaking in there!")
         controller.link_path("Walter")
         controller.task_check("Walter", "Clean the methlab")
