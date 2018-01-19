@@ -15,7 +15,7 @@ class BrianTestTodo(TestCase):
         controller = BrianApp(my_driver, "https://riot-todo-84334.firebaseapp.com/#!/")
         controller.form_fill("Brian", "clean out chicken coop", "they smell bad")
         #controller.task_check()
-        #controller.exit()
+        controller.exit()
 
     def test_link(self):
         """
