@@ -1,5 +1,5 @@
 from pyscc import Controller
-from .components import Page
+from components import Page
 
 
 class Product(Controller):
