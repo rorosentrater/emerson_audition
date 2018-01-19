@@ -14,7 +14,6 @@ class BrianTestTodo(TestCase):
         my_driver = webdriver.Firefox()
         controller = BrianApp(my_driver, "https://riot-todo-84334.firebaseapp.com/#!/")
         controller.form_fill("Brian", "clean out chicken coop", "they smell bad")
-        #controller.task_check()
         controller.exit()
 
     def test_link(self):
