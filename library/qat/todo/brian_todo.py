@@ -16,12 +16,14 @@ class BrianApp(Controller):
             'home': BrianHome
         })
 
-    def link_path(self):
+    def link_path(self, assignee):
         """
         :Description: Navigates to task and verifies correct URL.
+        :param assignee: string to see if in url.
+        :type assignee: string.
         """
         self.components.home.link.get()[-1].click()
-        assert self.instance_assignee in self.location
+        assert assignee in self.location
 
     def form_fill(self, assignee, title, content):
         """
@@ -34,21 +36,21 @@ class BrianApp(Controller):
         :type content: string.
         """
         home = self.components.home
-         #pylint: disable=attribute-defined-outside-init
         count = home.link.count()
-        self.instance_assignee = assignee
-        self.instance_title = title
         home.form.assignee.send_input(assignee)
         home.form.title.send_input(title)
         home.form.content.send_input(content)
         home.form.submit.click()
         assert count < home.link.count()
 
-
-    def task_check(self):
+    def task_check(self, assignee, title):
         """
         :Description: Verifies that the assignee page reflects the input.
+        :param assignee: string to verify in task.
+        :type assignee: string.
+        :param title: string to verify is in task.
+        :type title: string
         """
         home = self.components.home
-        assert self.instance_assignee in home.prof_label.text(raw=True)
-        assert self.instance_title in home.task_label.text(raw=True)
+        assert assignee in home.prof_label.text(raw=True)
+        assert title in home.task_label.text(raw=True)

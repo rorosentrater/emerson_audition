@@ -23,8 +23,8 @@ class BrianTestTodo(TestCase):
         my_driver = webdriver.Firefox()
         controller = BrianApp(my_driver, "https://riot-todo-84334.firebaseapp.com/#!/")
         controller.form_fill("Walter", "Clean the methlab", "There is a barrel leaking in there!")
-        controller.link_path()
-        controller.task_check()
+        controller.link_path("Walter")
+        controller.task_check("Walter", "Clean the methlab")
         controller.exit()
 
     def test_todo_bl(self):
