@@ -20,7 +20,7 @@ class BrianApp(Controller):
         """
         :Description: Navigates to task and verifies correct URL.
         """
-        self.components.home.link.get()[self.count - 1].click()
+        self.components.home.link.get()[-1].click()
         assert self.instance_assignee in self.location
 
     def form_fill(self, assignee, title, content):
@@ -35,15 +35,15 @@ class BrianApp(Controller):
         """
         home = self.components.home
          #pylint: disable=attribute-defined-outside-init
-        self.count = home.link.count()
+        count = home.link.count()
         self.instance_assignee = assignee
         self.instance_title = title
         home.form.assignee.send_input(assignee)
         home.form.title.send_input(title)
         home.form.content.send_input(content)
         home.form.submit.click()
-        assert self.count < home.link.count()
-        self.count = home.link.count()
+        assert count < home.link.count()
+
 
     def task_check(self):
         """
