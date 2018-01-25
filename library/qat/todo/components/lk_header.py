@@ -1,4 +1,4 @@
-from pyscc import Component, component_element,  component_group
+from pyscc import Component, component_element, component_group
 
 
 class Header(Component):
