@@ -1,4 +1,4 @@
-from pyscc import Component, component_element, component_group
+from pyscc import Component, component_element, component_elements, component_group
 
 
 class Home(Component):
@@ -10,6 +10,10 @@ class Home(Component):
     @component_element
     def create_header(self):
         return '.five.columns h1.logo'
+
+    @component_elements
+    def items(self):
+        return 'todo-list > ul > li'
 
     @component_group
     def task(self):
