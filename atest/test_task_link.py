@@ -10,14 +10,14 @@ class TaskLink(TestCase):
         controller = App(browser, "https://riot-todo-84334.firebaseapp.com/#!/")
         return controller
 
-    @Decorators.browser(name='chrome')
+    @Decorators.browsers()
     def test_create(self, driver, arguments):
         """Creates a new task"""
-        browser = self.setup(driver, arguments)
-        browser.task_create('Logan', 'Shopping List', 'Milk, Eggs, Cheese')
+        controller = self.setup(driver, arguments)
+        controller.task_create('Logan', 'Shopping List', 'Milk, Eggs, Cheese')
 
-    @Decorators.browser(name='chrome')
+    @Decorators.browsers()
     def test_delete(self, driver, arguments):
         """Deletes a task"""
-        browser = self.setup(driver, arguments)
-        browser.task_delete()
+        controller = self.setup(driver, arguments)
+        controller.task_delete()

@@ -16,16 +16,15 @@ class App(Controller):
 
     def task_delete(self):
         """Tests & Verifies task deletion"""
-        before = self.components.home.item.count()
+        before = self.components.home.items.count()
         self.components.home.task.delete.click()
-        self.wait(timeout=1)
-        assert before == (self.components.home.item.count() + 1)
+        self.components.home.items.wait_for(1, before - 1, error=True)
 
     def task_create(self, assignee, title, content):
         """Tests & Verifies task creation"""
-        before = self.components.home.item.count()
+        before = self.components.home.items.count()
         self.components.home.create.assignee.send_input(assignee)
         self.components.home.create.title.send_input(title)
         self.components.home.create.content.send_input(content)
         self.components.home.create.create.click()
-        assert before == (self.components.home.item.count() - 1)
+        self.components.home.items.wait_for(1, before + 1, error=True)

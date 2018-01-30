@@ -12,7 +12,7 @@ class Home(Component):
         return '.five.columns h1.logo'
 
     @component_elements
-    def item(self):
+    def items(self):
         return 'todo-list > ul > li'
 
     @component_group
