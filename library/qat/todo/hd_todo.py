@@ -20,10 +20,3 @@ class Task(Controller):
         home = self.components.home
         home.task_details.fmt(index=index).checkbox.click()
         home.delete_button.click()
-
-    # Returns the current number of tasks
-    def task_count(self):
-        return self.components.home.task_elements.count()
-
-    def click_assignee(self, index):
-        self.components.home.task_details.fmt(index=index).assignee.click()
