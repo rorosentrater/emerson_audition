@@ -14,7 +14,8 @@ class Profile(Component):
     @component_group
     def stats(self):
         return {
-            "total": "div#stats>table>tbody>tr>td:nth-child(1)",
-            "completed": "div#stats>table>tbody>tr>td:nth-child(2)",
-            "incomplete": "div#stats>table>tbody>tr>td:nth-child(3)"
+            "_": "div#stats>table>tbody>tr",
+            "total": "td:nth-child(1)",
+            "completed": "td:nth-child(2)",
+            "incomplete": "td:nth-child(3)"
         }
