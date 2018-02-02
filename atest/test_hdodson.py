@@ -5,7 +5,7 @@ from library.qat.todo.hd_todo import Task
 
 class TaskTest(TestCase):
 
-    @Decorators.browsers(development=True)
+    @Decorators.browsers()
     def test_task_create(self, driver, arguments):
         controller = create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
         task_count = controller.task_count()
@@ -13,7 +13,7 @@ class TaskTest(TestCase):
         self.assertTrue(controller.task_count(), task_count + 1)
         controller.exit()
 
-    @Decorators.browsers(development=True)
+    @Decorators.browsers()
     def test_assignee_link(self, driver, arguments):
         controller = create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
         controller.task_create('Lee', 'Nothing to do here', 'Seriously')
@@ -22,7 +22,7 @@ class TaskTest(TestCase):
         self.assertEqual(controller.location, 'https://riot-todo-84334.firebaseapp.com/#!/profile/Lee')
         controller.exit()
 
-    @Decorators.browsers(development=True)
+    @Decorators.browsers()
     def test_task_delete(self, driver, arguments):
         controller = create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
         # Create a new task
