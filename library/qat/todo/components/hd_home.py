@@ -31,9 +31,9 @@ class Home(Component):
     def task_details(self):
         return {
             "_": "todo-task#${id}",
-            "checkbox": "todo-task>h4>input[type=checkbox]",
-            "title": "todo-task>h4",
-            "date_time": "todo-task>span",
+            "checkbox": "input[type=checkbox]",
+            "title": "h4",
+            "date_time": "span",
             "assignee": "#assignee"
         }
 

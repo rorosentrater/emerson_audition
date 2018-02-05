@@ -24,16 +24,14 @@ class TaskTest(TestCase):
         self.assertEqual(controller.location, 'https://riot-todo-84334.firebaseapp.com/#!/profile/Lee')
         controller.exit()
 
-    @Decorators.browsers(development=True)
+    @Decorators.browser(name='firefox', development=True)
     def test_task_delete(self, driver, arguments):
         controller = create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
-        # Create a new task
-        controller.task_create('The Assignee', 'The Title', 'The Content')
-        task_count = controller.components.home.task_elements.count()
-        # Delete the created task
-        controller.task_delete(task_count)
+        home = controller.components.home
+        task_count = home.task_elements.count()
+        task_id = controller.task_create('The Assignee', 'The Title', 'The Content')
+        controller.task_delete(task_id)
         controller.wait(1)
-        # Confirm at least one task was removed
         self.assertTrue(task_count > controller.components.home.task_elements.count())
         controller.exit()
 
