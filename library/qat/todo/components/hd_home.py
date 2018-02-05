@@ -25,12 +25,12 @@ class Home(Component):
 
     @component_elements
     def task_elements(self):
-        return "li.animated.fadeIn"
+        return "todo-task"
 
     @component_group
     def task_details(self):
         return {
-            "_": "li.animated.fadeIn:nth-child(${index})",
+            "_": "todo-task#${id}",
             "checkbox": "todo-task>h4>input[type=checkbox]",
             "title": "todo-task>h4",
             "date_time": "todo-task>span",

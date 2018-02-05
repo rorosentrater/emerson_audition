@@ -5,7 +5,7 @@ from library.qat.todo.hd_todo import Task
 
 class TaskTest(TestCase):
 
-    @Decorators.browsers()
+    @Decorators.browsers(development=True)
     def test_task_create(self, driver, arguments):
         controller = create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
         task_count = controller.components.home.task_elements.count()
@@ -13,17 +13,18 @@ class TaskTest(TestCase):
         self.assertTrue(controller.components.home.task_elements.count(), task_count + 1)
         controller.exit()
 
-    @Decorators.browsers()
+    @Decorators.browser(name='firefox', development=True)
     def test_assignee_link(self, driver, arguments):
         controller = create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
-        controller.task_create('Lee', 'Nothing to do here', 'Seriously')
+        home = controller.components.home
         task_count = controller.components.home.task_elements.count()
-        controller.components.home.task_details.fmt(index=task_count).assignee.click()
-        controller.wait(1)
+        task_id = controller.task_create('Lee', 'Nothing to do here', 'Seriously')
+        home.task_elements.wait_for(5, length=task_count + 1, strict=True)
+        home.task_details.fmt(id=task_id).assignee.click()
         self.assertEqual(controller.location, 'https://riot-todo-84334.firebaseapp.com/#!/profile/Lee')
         controller.exit()
 
-    @Decorators.browsers()
+    @Decorators.browsers(development=True)
     def test_task_delete(self, driver, arguments):
         controller = create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
         # Create a new task

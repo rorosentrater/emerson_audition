@@ -14,6 +14,7 @@ class Task(Controller):
         home.task_creation.task_title.send_input(title)
         home.task_creation.task_content.send_input(content)
         home.task_creation.create_task_button.click()
+        return home.task_elements.get_attribute('id')[-1]
 
     # Select and delete the task at a given index
     def task_delete(self, index):
