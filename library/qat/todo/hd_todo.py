@@ -17,7 +17,13 @@ class Task(Controller):
         return home.task_elements.get_attribute('id')[-1]
 
     # Select and delete the task at a given index
-    def task_delete(self, tid):
+    def task_delete(self, task_id, safe_delete=True):
         home = self.components.home
-        home.task_details.fmt(id=tid).checkbox.click()
+        if not home.task_details.fmt(id=task_id).checkbox.get_property('checked'):
+            home.task_details.fmt(id=task_id).checkbox.click()
+        if safe_delete:
+            for id in home.task_elements.get_attribute('id'):
+                task = home.task_details.fmt(id=id)
+                if id != task_id and task.checkbox.get_property('checked'):
+                    task.checkbox.click()
         home.delete_button.click()
