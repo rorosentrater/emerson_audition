@@ -22,8 +22,8 @@ class Task(Controller):
         if not home.task_details.fmt(id=task_id).checkbox.get_property('checked'):
             home.task_details.fmt(id=task_id).checkbox.click()
         if safe_delete:
-            for id in home.task_elements.get_attribute('id'):
-                task = home.task_details.fmt(id=id)
-                if id != task_id and task.checkbox.get_property('checked'):
+            for tid in home.task_elements.get_attribute('id'):
+                task = home.task_details.fmt(id=tid)
+                if tid != task_id and task.checkbox.get_property('checked'):
                     task.checkbox.click()
         home.delete_button.click()
