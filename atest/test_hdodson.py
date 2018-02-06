@@ -1,42 +1,36 @@
 from unittest import TestCase
 from qat.utils import Decorators
+from library.qat.todo.hd_todo import Task
 
 
-# Exercise 3
-class TaskCreation(TestCase):
+class TaskTest(TestCase):
 
-    @Decorators.browsers()
-    def test_creation(self, driver, arguments):
-        browser = create_browser_driver(driver, arguments, "https://riot-todo-84334.firebaseapp.com/#!/")
-        # Gets the number of current tasks
-        count = len(browser.find_elements_by_css_selector("li.animated.fadeIn"))
-        # Create a new task
-        create_default_task(browser, "Lee", "Nothing to do here", "Seriously")
-        # Confirms a new task was created
-        self.assertTrue(browser.find_element_by_css_selector("li.animated.fadeIn:nth-child({})".format(count + 1)))
-        browser.quit()
+    def create_controller(self, driver, arguments, link):
+        browser = driver(**arguments) if arguments else driver()
+        controller = Task(browser, link)
+        return controller
 
     @Decorators.browsers()
+    def test_task_create(self, driver, arguments):
+        controller = self.create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
+        task_count = controller.components.home.task_elements.count()
+        controller.task_create('Lee', 'Nothing to do here', 'Seriously')
+        self.assertEqual(controller.components.home.task_elements.count(), task_count + 1)
+        controller.exit()
+
+    @Decorators.browsers(development=True)
     def test_assignee_link(self, driver, arguments):
-        browser = create_browser_driver(driver, arguments, "https://riot-todo-84334.firebaseapp.com/#!/")
-        # Create a new task
-        create_default_task(browser, "Lee", "Nothing to do here", "Seriously")
-        # Click assignee profile
-        assignee_elements = browser.find_elements_by_css_selector("span#assignee")
-        assignee_elements[-1].click()
-        # Confirm I am on the expected profile page
-        self.assertEqual(browser.current_url, "https://riot-todo-84334.firebaseapp.com/#!/profile/Lee")
-        browser.quit()
+        controller = self.create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
+        task_id = controller.task_create('Lee', 'Nothing to do here', 'Seriously')
+        controller.components.home.task_details.fmt(id=task_id).assignee.click()
+        self.assertTrue(controller.is_location('https://riot-todo-84334.firebaseapp.com/#!/profile/Lee',
+                                               timeout=5,
+                                               strict=True))
+        controller.exit()
 
-
-def create_default_task(web_driver, assignee, title, content):
-    web_driver.find_element_by_css_selector("#taskAssignee").send_keys(assignee)
-    web_driver.find_element_by_css_selector("#taskTitle").send_keys(title)
-    web_driver.find_element_by_css_selector("#taskContent").send_keys(content)
-    web_driver.find_element_by_css_selector(".is-success.u-pull-right").click()
-
-
-def create_browser_driver(driver, arguments, link):
-    browser = driver(**arguments)  # if arguments else driver()
-    browser.get(link)
-    return browser
+    @Decorators.browsers()
+    def test_task_delete(self, driver, arguments):
+        controller = self.create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
+        task_id = controller.task_create('The Assignee', 'The Title', 'The Content')
+        controller.task_delete(task_id)
+        controller.exit()
