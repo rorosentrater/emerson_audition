@@ -18,14 +18,11 @@ class TaskTest(TestCase):
         self.assertEqual(controller.components.home.task_elements.count(), task_count + 1)
         controller.exit()
 
-    @Decorators.browsers()
+    @Decorators.browsers(development=True)
     def test_assignee_link(self, driver, arguments):
         controller = self.create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
-        home = controller.components.home
-        task_count = controller.components.home.task_elements.count()
         task_id = controller.task_create('Lee', 'Nothing to do here', 'Seriously')
-        home.task_elements.wait_for(5, length=task_count + 1)
-        home.task_details.fmt(id=task_id).assignee.click()
+        controller.components.home.task_details.fmt(id=task_id).assignee.click()
         self.assertTrue(controller.is_location('https://riot-todo-84334.firebaseapp.com/#!/profile/Lee',
                                                timeout=5,
                                                strict=True))
@@ -34,10 +31,6 @@ class TaskTest(TestCase):
     @Decorators.browsers()
     def test_task_delete(self, driver, arguments):
         controller = self.create_controller(driver, arguments, 'https://riot-todo-84334.firebaseapp.com/#!/')
-        home = controller.components.home
-        task_count = home.task_elements.count()
         task_id = controller.task_create('The Assignee', 'The Title', 'The Content')
-        home.task_elements.wait_for(5, length=task_count + 1, strict=True)
         controller.task_delete(task_id)
-        home.task_elements.wait_for(5, length=task_count, strict=True, error=True)
         controller.exit()
