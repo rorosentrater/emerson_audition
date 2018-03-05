@@ -1,3 +1,5 @@
 # set to latest once resolve
 # https://github.com/PyCQA/pylint/issues/1774
 pylint==1.8.0
+pyscc==0.1.6
+nose

@@ -7,25 +7,29 @@ class LoganTestTodo(TestCase):
 
     def setUp(self):
         """Creates Firefox Webdriver instance"""
-        self.driver = webdriver.Firefox()
-        self.driver.get('https://riot-todo-84334.firebaseapp.com/#!/')
+        self.driver = webdriver.Chrome()
+        self.driver.get('https://www.emersonecologics.com/')
 
-    def test_page_render(self):
-        """Calls test_rendered on necessary elements to verify they render as expected"""
-        driver = webdriver.Firefox()
-        driver.get("https://riot-todo-84334.firebaseapp.com/#!/")
-        assert driver.find_element(By.ID, "deleteTasks")
-        # Verifies Delete Completed Button renders correctly
-        assert driver.find_element(By.CLASS_NAME, "is-success.u-pull-right")
-        # Verifies Create Task Button renders correctly
-        assert driver.find_element(By.ID, "social")
-        # Verifies list of Social widgets renders correctly
-        assert driver.find_element(By.CLASS_NAME, "logo.animated.slideInDown")
-        # Verifies To-Do header renders correctly
-        assert driver.find_element(By.CLASS_NAME, "unstyled")
-        # Verifies list of Tasks renders correctly
-        driver.quit()
-        # Terminates Webdriver
+    # def test_page_render(self):
+    #     """Calls test_rendered on necessary elements to verify they render as expected"""
+    #     driver = webdriver.Firefox()
+    #     driver.get("https://riot-todo-84334.firebaseapp.com/#!/")
+    #     assert driver.find_element(By.ID, "deleteTasks")
+    #     # Verifies Delete Completed Button renders correctly
+    #     assert driver.find_element(By.CLASS_NAME, "is-success.u-pull-right")
+    #     # Verifies Create Task Button renders correctly
+    #     assert driver.find_element(By.ID, "social")
+    #     # Verifies list of Social widgets renders correctly
+    #     assert driver.find_element(By.CLASS_NAME, "logo.animated.slideInDown")
+    #     # Verifies To-Do header renders correctly
+    #     assert driver.find_element(By.CLASS_NAME, "unstyled")
+    #     # Verifies list of Tasks renders correctly
+    #     driver.quit()
+    #     # Terminates Webdriver
+
+    def test_create_task(self):
+        """Creates a new task"""
+        print 'garb'
 
     def test_create_task(self):
         """Creates a new task"""

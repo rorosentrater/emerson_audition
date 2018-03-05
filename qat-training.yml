@@ -2,8 +2,35 @@
   connection: local
   become: True
   tasks:
-    - npm:
+    - name: Setup virtual env
+      pip: requirements={{ playbook_dir }}/{{ item }}
+           virtualenv={{ playbook_dir }}/v
+           extra_args="--trusted-host 192.168.254.81"
+      with_items:
+      - test-requirements-cpython.txt
+    - name: Install Geckodriver (Firefox)
+      npm:
         name: geckodriver
         version: 1.10.0
         global: yes
         state: present
+
+    - name: Install chromedriver version 2.33 for chrome 63 stable
+      shell: npm install -g chromedriver@2.33 --unsafe-perm=true
+      become: True
+
+    - name: Check Chrome Installed
+      shell: google-chrome-stable --version | grep 64
+      register: chrome_check
+      ignore_errors: True
+
+    - name: Install Google Chrome v.64
+      shell: |
+        dpkg --purge --force-depends chromium-browser
+        dpkg --purge --force-depends google-chrome-stable
+        wget -O /tmp/chrome.deb http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_64.0.3282.167-1_amd64.deb
+        dpkg --install /tmp/chrome.deb
+        apt-get install -f -y
+        rm -rf /tmp/chrome.deb
+      when: chrome_check.rc == 1
+      become: True
