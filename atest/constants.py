@@ -1,6 +1,6 @@
 import os
 
-
+# This is where environment vars would go
 TEST_MODULE = os.environ.get('TEST_MODULE', '')
 COMMAND_EXECUTOR = os.environ.get('COMMAND_EXECUTOR', '')
 

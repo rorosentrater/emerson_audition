@@ -1,8 +1,3 @@
-# qat-todo
-
-This is a template project for the QAT training procedure.
-Instructions can be found [here](https://confluence.transparent.com/display/DEV/QA+%28UI%29+Automated+Testing+-+Training+Procedure), contact a team member for assinstance.
-
 ### Directory Structure
 
 * **/utest**: Unit tests

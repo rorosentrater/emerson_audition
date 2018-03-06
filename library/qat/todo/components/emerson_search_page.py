@@ -5,7 +5,8 @@ class SearchResults(Component):
 
     @component_element
     def filter_results_button(self):
-        return 'p.btn-filter:nth-child(1)'  # Using :nth-child because there is a second hidden identical button in DOM
+        # Using :nth-child because there is a second hidden identical button in DOM
+        return 'p.btn-filter:nth-child(1)'
 
     @component_element
     def clear_all_button(self):
@@ -33,4 +34,3 @@ class SearchResults(Component):
     @component_element
     def x_returned_y_results(self):
         return 'div.search-result-header > div > h4'
-

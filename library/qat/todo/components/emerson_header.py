@@ -1,5 +1,5 @@
 # encoding: UTF-8
-from pyscc import Component, component_element, component_group
+from pyscc import Component, component_group
 
 
 class Header(Component):
@@ -108,6 +108,3 @@ class Header(Component):
             'm_r': '/div/div/ul/li/a[@href="brands/directory/m-r"]',
             's_z': '/div/div/ul/li/a[@href="href="brands/directory/s-z"]'
         }
-
-
-

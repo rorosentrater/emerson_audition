@@ -8,7 +8,8 @@ class Emc(Controller):
 
     def __init__(self, browser, base_url):
         """
-        :description: Referencing the controller constructor. This controller serves as the repository for any shared
+        :description: Referencing the controller constructor. This controller serves
+         as the repository for any shared methods/imports
         functions and webelement/component repositories (pages).
         :param browser: Reference to the webdriver
         :type browser: Selenium Webdriver object
@@ -28,14 +29,17 @@ class Emc(Controller):
         :Description: Verifies that search page boiler plate elements loaded
         :param items: How many items you expect to be loaded into the results.
         :type items: int
-        :param strict: When set, checks that only EXACTLY the amount of items expected were loaded in.
+        :param strict: When set, checks that only EXACTLY
+         the amount of items expected were loaded in.
         :type strict: bool
         """
-        self.components.search.filter_results_button.wait_for(5, error='Filter your results button did not render')
-        self.components.search.clear_all_button.wait_for(5, error='Clear all button did not render')
+        self.components.search.filter_results_button.wait_for(
+            5, error='Filter your results button did not render')
+        self.components.search.clear_all_button.wait_for(
+            5, error='Clear all button did not render')
         if not self.wait(
-            timeout=5,
-            condition=self.components.search.master_categories.check.available
+                timeout=5,
+                condition=self.components.search.master_categories.check.available
         ):
             raise RuntimeError('Not all master filter categories loaded as expected')
         self.components.search.product_items.wait_for(
@@ -44,4 +48,3 @@ class Emc(Controller):
             strict=strict,
             error=True
         )
-
