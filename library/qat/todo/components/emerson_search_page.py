@@ -30,3 +30,7 @@ class SearchResults(Component):
     def product_items(self):
         return 'li.product-item-list'
 
+    @component_element
+    def x_returned_y_results(self):
+        return 'div.search-result-header > div > h4'
+
